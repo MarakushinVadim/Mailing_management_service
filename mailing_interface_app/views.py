@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
-from mailing_interface_app.forms import ClientServiceForm
+from mailing_interface_app.forms import ClientServiceForm, MessageForm, SendingMailSetForm, SendTryForm
 from mailing_interface_app.models import ClientService, Message, SendingMailSet, SendTry
 
 
@@ -37,6 +37,8 @@ class ClientServiceDeleteView(DeleteView):
 
 class MessageCreateView(CreateView):
     model = Message
+    success_url = reverse_lazy('mailing_interface_app:base')
+    form_class = MessageForm
 
 
 class MessageDetailView(DetailView):
@@ -45,10 +47,13 @@ class MessageDetailView(DetailView):
 
 class MessageUpdateView(UpdateView):
     model = Message
+    form_class = MessageForm
+    success_url = reverse_lazy('mailing_interface_app:base')
 
 
 class MessageDeleteView(DeleteView):
     model = Message
+    success_url = reverse_lazy('mailing_interface_app:base')
 
 
 class MessageListView(ListView):
@@ -57,6 +62,8 @@ class MessageListView(ListView):
 
 class SendingMailSetCreateView(CreateView):
     model = SendingMailSet
+    success_url = reverse_lazy('mailing_interface_app:base')
+    form_class = SendingMailSetForm
 
 
 class SendingMailSetDetailView(DetailView):
@@ -65,10 +72,13 @@ class SendingMailSetDetailView(DetailView):
 
 class SendingMailSetUpdateView(UpdateView):
     model = SendingMailSet
+    form_class = SendingMailSetForm
+    success_url = reverse_lazy('mailing_interface_app:base')
 
 
 class SendingMailSetDeleteView(DeleteView):
     model = SendingMailSet
+    success_url = reverse_lazy('mailing_interface_app:base')
 
 
 class SendingMailSetListView(ListView):
@@ -85,11 +95,16 @@ class SendTryDetailView(DetailView):
 
 class SendTryCreateView(CreateView):
     model = SendTry
+    success_url = reverse_lazy('mailing_interface_app:base')
+    form_class = SendTryForm
 
 
 class SendTryUpdateView(UpdateView):
     model = SendTry
+    form_class = SendTryForm
+    success_url = reverse_lazy('mailing_interface_app:base')
 
 
 class SendTryDeleteView(DeleteView):
     model = SendTry
+    success_url = reverse_lazy('mailing_interface_app:base')

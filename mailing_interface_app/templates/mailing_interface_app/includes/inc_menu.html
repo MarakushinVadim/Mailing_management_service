@@ -20,6 +20,49 @@
                     </ul>
                 </li>
             </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Сообщения
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{% url 'mailing_interface_app:message_create' %}">
+                            Добавить сообщение </a></li>
+                        <li><a class="dropdown-item" href="{% url 'mailing_interface_app:message_list' %}">
+                            Просмотреть список сообщений</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Настройки рассылок
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{% url 'mailing_interface_app:sending_mail_set_create' %}">
+                            Добавить настройку </a></li>
+                        <li><a class="dropdown-item" href="{% url 'mailing_interface_app:sending_mail_set_list' %}">
+                            Просмотреть список настроек</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Попытки рассылок
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{% url 'mailing_interface_app:send_try_create' %}">
+                            Добавить попытку </a></li>
+                        <li><a class="dropdown-item" href="{% url 'mailing_interface_app:send_try_list' %}">
+                            Просмотреть список попыток</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
+

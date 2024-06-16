@@ -1,6 +1,6 @@
 from django.forms import BooleanField, ModelForm
 
-from mailing_interface_app.models import ClientService
+from mailing_interface_app.models import ClientService, Message, SendingMailSet, SendTry
 
 
 class StyleFormMixin:
@@ -19,3 +19,24 @@ class ClientServiceForm(StyleFormMixin, ModelForm):
     class Meta:
         model = ClientService
         fields = '__all__'
+
+
+class MessageForm(StyleFormMixin, ModelForm):
+
+    class Meta:
+        model = Message
+        exclude = ('slug', 'user',)
+
+
+class SendingMailSetForm(StyleFormMixin, ModelForm):
+
+    class Meta:
+        model = SendingMailSet
+        exclude = ('first_sending_date', 'sending_time', 'sending_status',)
+
+
+class SendTryForm(StyleFormMixin, ModelForm):
+
+    class Meta:
+        model = SendTry
+        exclude = ('sending_status', 'last_sending_date', 'server_response',)

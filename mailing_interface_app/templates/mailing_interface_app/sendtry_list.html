@@ -1,0 +1,9 @@
+{% extends 'mailing_interface_app/base.html' %}
+{% block content %}
+<div class="list-group">
+    {% for object in object_list %}
+    <a href="{% url 'mailing_interface_app:sendtry_detail' object.pk %}" class="list-group-item list-group-item-action">
+        {{ object.sending_status }}</a>
+    {% endfor %}
+</div>
+{% endblock %}
