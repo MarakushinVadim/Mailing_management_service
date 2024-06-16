@@ -11,6 +11,13 @@ class ClientService(models.Model):
     name = models.CharField(max_length=100, verbose_name='Ф.И.О.', help_text='Введите Ф.И.О.')
     comment = models.TextField(max_length=255, verbose_name='комментарий', help_text='Введите комментарий', **NULLABLE)
 
+    def __str__(self):
+        return f'{self.name}, {self.email}'
+
+    class Meta:
+        verbose_name = 'клиент'
+        verbose_name_plural = 'клиенты'
+
 
 class Message(models.Model):
     letter_subject = models.CharField(max_length=255, verbose_name='тема письма')

@@ -1,0 +1,22 @@
+{% extends 'mailing_interface_app/base.html' %}
+{% block content %}
+<div class="container">
+    <form class="row" method="post" enctype="multipart/form-data">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-warning">
+                    Войти
+                </button>
+                <br>
+                <a href="{% url 'users_app:password_reset_form' %}" class="btn btn-warning">
+                    Восстановить пароль
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
