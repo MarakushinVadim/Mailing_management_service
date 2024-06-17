@@ -21,7 +21,7 @@ class ClientService(models.Model):
 
 class Message(models.Model):
     letter_subject = models.CharField(max_length=255, verbose_name='тема письма')
-    slug = models.SlugField(max_length=255, unique=True, verbose_name='ссылка')
+    slug = models.SlugField(max_length=255, unique=True, verbose_name='ссылка', **NULLABLE)
     letter_body = models.TextField(verbose_name='тело письма')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
 
@@ -39,7 +39,6 @@ class Message(models.Model):
 
 
 class SendingMailSet(models.Model):
-
     class SendingPeriodChoices(models.TextChoices):
         ONE_IN_MONTH = 'one_in_month', 'один раз в месяц'
         ONE_IN_WEEK = 'one_in_week', 'один раз в неделю'
@@ -51,10 +50,11 @@ class SendingMailSet(models.Model):
         RUNNING = 'running', 'выполняется'
 
     name = models.CharField(max_length=255, verbose_name='имя рассылки', help_text='Введите имя рассылки')
-    client_service = models.ForeignKey(ClientService, on_delete=models.CASCADE, verbose_name='клиент')
-    message = models.OneToOneField(Message, on_delete=models.CASCADE, verbose_name='сообщение')
+    client_service = models.ManyToManyField(ClientService, related_name='client')
+    message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='сообщение')
     first_sending_date = models.DateTimeField(**NULLABLE, verbose_name='дата первой отправки')
-    sending_time = models.DateTimeField(**NULLABLE, verbose_name='время отправки')
+    sending_time = models.TimeField(verbose_name='время отправки',
+                                    help_text='Введите время отправки в формате 00:00:00')
     sending_period = models.CharField(max_length=13,
                                       default=SendingPeriodChoices.ONE_IN_WEEK,
                                       choices=SendingPeriodChoices.choices,
@@ -79,9 +79,9 @@ class SendTry(models.Model):
 
     sending_mail = models.ForeignKey(SendingMailSet, on_delete=models.CASCADE, verbose_name='отправка')
     sending_status = models.CharField(max_length=7,
-                                     default=StatusChoices.FAILURE,
-                                     choices=StatusChoices.choices,
-                                     verbose_name='статус попытки отправки')
+                                      default=StatusChoices.FAILURE,
+                                      choices=StatusChoices.choices,
+                                      verbose_name='статус попытки отправки')
     last_sending_date = models.DateTimeField(verbose_name='дата последней попытки отправки')
     server_response = models.TextField(verbose_name='ответ почтового сервера', **NULLABLE)
     client_service = models.ForeignKey(ClientService, on_delete=models.CASCADE, **NULLABLE, verbose_name='клиент')
@@ -92,4 +92,3 @@ class SendTry(models.Model):
 
     def __str__(self):
         return f'Попытка отправки - {self.sending_status}'
-

@@ -25,14 +25,14 @@ class MessageForm(StyleFormMixin, ModelForm):
 
     class Meta:
         model = Message
-        exclude = ('slug', 'user',)
+        exclude = ('slug',)
 
 
 class SendingMailSetForm(StyleFormMixin, ModelForm):
 
     class Meta:
         model = SendingMailSet
-        exclude = ('first_sending_date', 'sending_time', 'sending_status',)
+        exclude = ('first_sending_date', 'sending_status',)
 
 
 class SendTryForm(StyleFormMixin, ModelForm):

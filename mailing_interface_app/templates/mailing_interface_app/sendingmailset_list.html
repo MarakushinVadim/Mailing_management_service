@@ -2,8 +2,8 @@
 {% block content %}
 <div class="list-group">
     {% for object in object_list %}
-    <a href="{% url 'mailing_interface_app:sendingmailset_detail' object.pk %}" class="list-group-item list-group-item-action">
-        {{ object.sending_mail }}</a>
+    <a href="{% url 'mailing_interface_app:sending_mail_set_update' object.pk %}" class="list-group-item list-group-item-action">
+        {{ object.name }}</a>
     {% endfor %}
 </div>
 {% endblock %}

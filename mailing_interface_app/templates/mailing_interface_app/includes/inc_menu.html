@@ -1,6 +1,9 @@
+{% load my_tags %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Сервис рассылок</a>
+        <a class="nav-link" aria-current="page" href="{% url 'mailing_interface_app:base' %}"><img
+                src="{{ 'media/logo.jpg' | media_filter }}" class=""
+                alt=""> Сервис рассылок</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -61,6 +64,20 @@
                             Просмотреть список попыток</a></li>
                     </ul>
                 </li>
+            </ul>
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'users_app:logout' %}">Выход</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'users_app:login' %}">Вход</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'users_app:register' %}">Регистрация</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
