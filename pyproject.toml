@@ -14,7 +14,7 @@ psycopg2 = "^2.9.9"
 black = "^24.4.2"
 pytils = "^0.4.1"
 shell = "^1.0.1"
-apscheduler = "^3.10.4"
+django-apscheduler = "^0.6.2"
 
 
 [build-system]

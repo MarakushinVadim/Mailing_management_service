@@ -8,22 +8,17 @@ from Mailing_management_service import settings
 from mailing_interface_app.models import SendingMailSet
 
 
-def start():
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(send_mailing, 'interval', minutes=1)
-    scheduler.start()
-
-
-def send_mailing():
-    zone = pytz.timezone(settings.TIME_ZONE)
-    current_datetime = datetime.now(zone)
-    # создание объекта с применением фильтра
-    mailings = SendingMailSet.objects.filter(first_sending_date__lte=current_datetime).filter(sending_status=SendingMailSet.SendingStatusChoices.RUNNING)
-
-    for mailing in mailings:
-        send_mail(
-                subject=mailing.message.letter_subject,
-                message=mailing.message.letter_body,
-                from_email=settings.EMAIL_HOST_USER,
-                recipient_list=[client.email for client in mailing.client_service.all()]
-           )
+# def send_mailing():
+#     zone = pytz.timezone(settings.TIME_ZONE)
+#     current_datetime = datetime.now(zone)
+#     # создание объекта с применением фильтра
+#     mailings = SendingMailSet.objects.filter(first_sending_date__lte=current_datetime).filter(
+#         sending_status=SendingMailSet.SendingStatusChoices.RUNNING)
+#
+#     for mailing in mailings:
+#         send_mail(
+#             subject=mailing.message.letter_subject,
+#             message=mailing.message.letter_body,
+#             from_email=settings.EMAIL_HOST_USER,
+#             recipient_list=["marakushin.vadim@gmail.com"]
+#         )

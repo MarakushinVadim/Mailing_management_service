@@ -12,7 +12,7 @@ class ClientServiceAdmin(admin.ModelAdmin):
 @admin.register(SendingMailSet)
 class SendingMailSetAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'name', 'message', 'sending_time', 'sending_status', 'sending_period',
+        'id', 'name', 'message', 'sending_status', 'sending_period',
         'first_sending_date'
     )
     search_fields = ('id', 'name')
@@ -26,5 +26,5 @@ class MessageAdmin(admin.ModelAdmin):
 
 @admin.register(SendTry)
 class SendTryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'sending_mail', 'sending_status', 'last_sending_date', 'server_response', 'client_service')
+    list_display = ('id', 'sending_mail', 'status', 'last_sending_date', 'server_response')
     search_fields = ('id', 'sending_mail')

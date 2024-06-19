@@ -32,11 +32,11 @@ class SendingMailSetForm(StyleFormMixin, ModelForm):
 
     class Meta:
         model = SendingMailSet
-        exclude = ('first_sending_date', 'sending_status',)
+        exclude = ('sending_status', 'next_sending_time',)
 
 
 class SendTryForm(StyleFormMixin, ModelForm):
 
     class Meta:
         model = SendTry
-        exclude = ('sending_status', 'last_sending_date', 'server_response',)
+        exclude = ('status', 'last_sending_date', 'server_response',)

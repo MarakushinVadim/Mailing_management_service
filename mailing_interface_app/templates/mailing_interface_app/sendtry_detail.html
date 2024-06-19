@@ -7,14 +7,14 @@
             <div class="row g-0">
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Название настройки - {{ object.name }}</h5>
-                        <p class="card-text">Клиент - {{ object.client_service }}</p>
+                        <h5 class="card-title">Название настройки - {{ object.sending_mail }}</h5>
+                        <p class="card-text">Клиент - {{ object.sending_status }}</p>
                         <p class="card-text">Дата последней отправки - {{ object.last_sending_date }}</p>
                         <p class="card-text">Ответ сервера - {{ object.server_response }}</p>
                     </div>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a class="btn btn-danger"
-                           href="{% url 'mailing_interface_app:sendtry_delete' object.pk %}">
+                           href="{% url 'mailing_interface_app:send_try_delete' object.pk %}">
                             Удалить попытку </a>
                     </div>
                 </div>
