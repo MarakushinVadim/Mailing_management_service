@@ -14,10 +14,16 @@ def my_job():
     def send_mailing():
         current_datetime = datetime.now(pytz.utc)
 
+        mailing_set = SendingMailSet.objects.all()
+        for mailing in mailing_set:
+            if mailing.next_sending_time == current_datetime:
+                mailing.sending_status = 'running'
+                print(f'обьект SendingMailSet - {mailing.name}')
+
         mailings = SendingMailSet.objects.filter(next_sending_time__lte=current_datetime)
 
-
         for mailing in mailings:
+
             if mailing.sending_status != 'completed':
                 mailing.sending_status = 'running'
                 print(f'обьект SendingMailSet - {mailing.name}')
@@ -55,5 +61,3 @@ def my_job():
                     mailing.save()
 
     send_mailing()
-
-
