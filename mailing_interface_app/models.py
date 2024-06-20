@@ -65,7 +65,7 @@ class SendingMailSet(models.Model):
                                       verbose_name='статус отправки')
 
     def save(self, *args, **kwargs):
-        if not self.next_sending_time:
+        if self.next_sending_time is None:
             self.next_sending_time = self.first_sending_date
         super(SendingMailSet, self).save(*args, **kwargs)
 
