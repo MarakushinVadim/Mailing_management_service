@@ -23,4 +23,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(("mailing_interface_app.urls", "mailing_interface_app"), namespace="mailing_interface_app")),
     path("users_app/", include(("users_app.urls", "users_app"), namespace="users_app")),
+    path("blog_app/", include(("blog_app.urls", "blog_app"), namespace="blog_app")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

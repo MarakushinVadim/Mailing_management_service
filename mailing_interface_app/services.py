@@ -20,7 +20,7 @@ def my_job():
                 mailing.sending_status = 'running'
                 print(f'обьект SendingMailSet - {mailing.name}')
 
-        mailings = SendingMailSet.objects.filter(next_sending_time__lte=current_datetime)
+        mailings = SendingMailSet.objects.filter(next_sending_time__lte=current_datetime, is_active=True)
 
         for mailing in mailings:
 

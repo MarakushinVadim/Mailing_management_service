@@ -15,28 +15,30 @@ class StyleFormMixin:
 
 
 class ClientServiceForm(StyleFormMixin, ModelForm):
-
     class Meta:
         model = ClientService
-        fields = '__all__'
+        exclude = ('owner',)
 
 
 class MessageForm(StyleFormMixin, ModelForm):
-
     class Meta:
         model = Message
-        exclude = ('slug',)
+        exclude = ('slug', 'user')
 
 
 class SendingMailSetForm(StyleFormMixin, ModelForm):
-
     class Meta:
         model = SendingMailSet
-        exclude = ('sending_status', 'next_sending_time',)
+        exclude = ('sending_status', 'next_sending_time', 'owner')
+
+
+class SendingMailSetModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = SendingMailSet
+        fields = ('is_active',)
 
 
 class SendTryForm(StyleFormMixin, ModelForm):
-
     class Meta:
         model = SendTry
         exclude = ('status', 'last_sending_date', 'server_response',)

@@ -1,0 +1,35 @@
+{% extends 'mailing_interface_app/base.html' %}
+{% load my_tags %}
+{% block content %}
+
+<div class="container">
+    <div class="row ">
+        <div class="col-12">
+            <div class="card" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ object.avatar | media_filter }}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Заголовок - {{ object.title }}</h5>
+                            <p class="card-text">Автор - {{ object.owner }}</p>
+                            <p class="card-text">Содержимое - {{ object.body }}</p>
+                            <p class="card-text">Опубликовано - {{ object.published_at }}</p>
+                            <p class="card-text">Просмотров - {{ object.views_count }}</p>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-success"
+                           href="{% url 'blog_app:blog_update' object.pk %}">
+                            Изменить блог </a>
+                        <a class="btn btn-danger"
+                           href="{% url 'blog_app:blog_delete' object.pk %}">
+                            Удалить блог </a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

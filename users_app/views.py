@@ -1,7 +1,9 @@
 import secrets
 
 from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordResetView
+from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
@@ -9,7 +11,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 
 from Mailing_management_service.settings import EMAIL_HOST_USER
-from users_app.forms import UserRegisterForm, UserPasswordResetForm
+from users_app.forms import UserRegisterForm, UserPasswordResetForm, UserModeratorForm
 from users_app.models import User
 
 
@@ -66,3 +68,29 @@ class UserPasswordResetView(PasswordResetView):
                 except Exception:
                     print(f'Ошибка при отправке письма, {user.email}')
                 return HttpResponseRedirect(reverse('users_app:login'))
+
+
+class UserDetailView(DetailView):
+    model = User
+
+    def get_form_class(self):
+        user = self.request.user
+        if user.has_perm('users_app.can_edit_is_active'):
+            return UserModeratorForm
+        raise PermissionDenied
+
+
+class UserListView(LoginRequiredMixin, ListView):
+    model = User
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.has_perm('users_app.can_view_users'):
+            return User.objects.all()
+        raise PermissionDenied
+
+
+class UserUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = UserModeratorForm
+    success_url = reverse_lazy('users_app:user_list')

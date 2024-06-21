@@ -1,0 +1,24 @@
+{% extends 'mailing_interface_app/base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">E-mail пользователя {{ object.email }}</h5>
+                        <p class="card-text">Статус пользователя {{ object.is_active }}</p>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-success"
+                           href="{% url 'users_app:user_update' object.pk %}">
+                            Изменить пользователя </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
