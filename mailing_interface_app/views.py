@@ -3,13 +3,28 @@ from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
+from blog_app.models import Blog
 from mailing_interface_app.forms import ClientServiceForm, MessageForm, SendingMailSetForm, SendTryForm, \
     SendingMailSetModeratorForm
 from mailing_interface_app.models import ClientService, Message, SendingMailSet, SendTry
+from mailing_interface_app.services import get_blogs_from_cache
 
 
 class BaseView(TemplateView):
-    template_name = 'mailing_interface_app/base.html'
+    template_name = 'mailing_interface_app/home.html'
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data["sending_count"] = SendingMailSet.objects.all().count()
+        context_data["active_sending_count"] = SendingMailSet.objects.filter(
+            is_active=True,
+        ).count()
+        context_data["client_service_count"] = ClientService.objects.all().distinct().count()
+        context_data["random_blogs"] = Blog.objects.order_by("?")[:3]
+        return context_data
+
+    def get_queryset(self):
+        return get_blogs_from_cache
 
 
 class ClientServiceListView(LoginRequiredMixin, ListView):

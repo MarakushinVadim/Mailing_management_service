@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
 
 from mailing_interface_app.views import ClientServiceListView, ClientServiceDeleteView, ClientServiceUpdateView, \
     ClientServiceDetailView, ClientServiceCreateView, MessageCreateView, MessageDetailView, MessageUpdateView, \

@@ -1,0 +1,36 @@
+{% extends 'mailing_interface_app/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        Общее количество рассылок - {{ sending_count }}
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        Количество активных рассылок - {{ active_sending_count }}
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        Количество уникальных клиентов - {{ client_service_count }}
+    </div>
+</div>
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for object in random_blogs %}
+        <div class="col">
+            <div class="card text-center" style="width: 18rem;">
+                <img src="{{ object.avatar | media_filter }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ object.title }}</h5>
+                    <p class="card-text">{{ object.body | description_filter }}</p>
+                    <a href="{% url 'blog_app:blog_detail' object.pk %}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

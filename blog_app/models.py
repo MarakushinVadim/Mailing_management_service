@@ -9,7 +9,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=150, verbose_name='Заголовок', help_text='Введите заголовок')
     body = models.TextField(verbose_name="Содержимое", help_text="Введите содержимое")
     avatar = models.ImageField(upload_to="media", **NULLABLE, verbose_name="Превью")
-    count_view = models.IntegerField(default=0, **NULLABLE)
+    count_view = models.IntegerField(default=0)
     published_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата публикации", **NULLABLE)
     owner = models.ForeignKey(
         User,

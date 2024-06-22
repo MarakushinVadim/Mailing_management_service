@@ -2,9 +2,12 @@ import smtplib
 from datetime import datetime, timedelta
 
 import pytz
+from django.core.cache import cache
 from django.core.mail import send_mail
 
 from Mailing_management_service import settings
+from Mailing_management_service.settings import CACHE_ENABLED
+from blog_app.models import Blog
 from mailing_interface_app.models import SendingMailSet, SendTry
 
 
@@ -61,3 +64,15 @@ def my_job():
                     mailing.save()
 
     send_mailing()
+
+
+def get_blogs_from_cache():
+    if not CACHE_ENABLED:
+        return Blog.objects.all()
+    key = 'blog_objects'
+    blogs = cache.get(key)
+    if blogs is not None:
+        return blogs
+    blogs = Blog.objects.all()
+    cache.set(key, blogs)
+    return blogs
