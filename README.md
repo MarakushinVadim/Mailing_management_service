@@ -9,8 +9,8 @@
 с помощью менеджера poetry установить библиотеки из pyproject.toml
 
 Установите фикстуры с помощью команд: 
-    * "python manage.py loaddata mailing_interface_app.json" 
-    * "python manage.py loaddata groups.json"
+* "python manage.py loaddata mailing_interface_app.json" 
+* "python manage.py loaddata groups.json"
 
 Зрегистрируйте своего пльзователя и добавьте ему права модератора
 
