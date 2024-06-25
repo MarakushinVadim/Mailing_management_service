@@ -1,0 +1,90 @@
+[
+  {
+    "model": "mailing_interface_app.clientservice",
+    "pk": 2,
+    "fields": {
+      "email": "test@test.ru",
+      "name": "Тестов Т.Т.",
+      "comment": "test",
+      "owner": 4
+    }
+  },
+  {
+    "model": "mailing_interface_app.clientservice",
+    "pk": 3,
+    "fields": {
+      "email": "zubayyrovak0202@icloud.com",
+      "name": "Маракушина К.А.",
+      "comment": "Маракушина К.А.",
+      "owner": 1
+    }
+  },
+  {
+    "model": "mailing_interface_app.clientservice",
+    "pk": 4,
+    "fields": {
+      "email": "marakushin.vadim@gmail.com",
+      "name": "Вадим",
+      "comment": "11",
+      "owner": 1
+    }
+  },
+  {
+    "model": "mailing_interface_app.message",
+    "pk": 1,
+    "fields": {
+      "letter_subject": "тестовое письмо",
+      "slug": "testovoe-pismo",
+      "letter_body": "Это тестовое письмо",
+      "user": 1
+    }
+  },
+  {
+    "model": "mailing_interface_app.message",
+    "pk": 4,
+    "fields": {
+      "letter_subject": "тест сообщение",
+      "slug": "test-soobschenie",
+      "letter_body": "Это тестовое сообщение",
+      "user": 1
+    }
+  },
+  {
+    "model": "mailing_interface_app.message",
+    "pk": 5,
+    "fields": {
+      "letter_subject": "новое письмо",
+      "slug": "novoe-pismo",
+      "letter_body": "Это новое письмо",
+      "user": 1
+    }
+  },
+  {
+    "model": "mailing_interface_app.sendingmailset",
+    "pk": 10,
+    "fields": {
+      "name": "4444",
+      "message": 1,
+      "first_sending_date": "2024-06-21T20:32:00Z",
+      "next_sending_time": "2024-06-28T20:32:01.807Z",
+      "sending_period": "one_in_week",
+      "sending_status": "completed",
+      "is_active": true,
+      "owner": 1,
+      "client_service": [
+        3,
+        4
+      ]
+    }
+  },
+  {
+    "model": "mailing_interface_app.sendtry",
+    "pk": 35,
+    "fields": {
+      "sending_mail": 10,
+      "status": "SUCCESS",
+      "last_sending_date": "2024-06-21T20:32:01.799Z",
+      "server_response": "1"
+    }
+  }
+]

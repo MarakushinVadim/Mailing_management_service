@@ -9,5 +9,6 @@ class MailingInterfaceAppConfig(AppConfig):
 
     def ready(self):
         from mailing_interface_app.services import my_job
+
         sleep(2)
         my_job()

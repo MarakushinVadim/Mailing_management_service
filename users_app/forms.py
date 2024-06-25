@@ -8,16 +8,16 @@ from users_app.models import User
 class UserRegisterForm(StyleFormMixin, UserCreationForm):
     class Meta:
         model = User
-        fields = ('email', 'password1', 'password2')
+        fields = ("email", "password1", "password2")
 
 
 class UserPasswordResetForm(StyleFormMixin, PasswordResetForm):
     class Meta:
         model = User
-        fields = ('email',)
+        fields = ("email",)
 
 
 class UserModeratorForm(StyleFormMixin, ModelForm):
     class Meta:
         model = User
-        fields = ('is_active',)
+        fields = ("is_active",)
